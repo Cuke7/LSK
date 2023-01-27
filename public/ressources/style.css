@@ -94,10 +94,31 @@ select {
 }
 
 .hidden-child {
-    margin-bottom: 10px;
+    margin: 10px;
     cursor: pointer;
 }
 
 .hidden-child:hover {
     color: red;
+}
+
+.parent {
+    position: absolute;
+    right: 50px;
+    top: 100px;
+    font-weight: bold;
+    color: white;
+    font-size: x-large;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 5px;
+    /* font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
+}
+
+#container {
+    cursor: grab;
+}
+
+#container:active {
+    cursor: grabbing;
 }

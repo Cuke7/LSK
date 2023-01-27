@@ -203,14 +203,18 @@ function init() {
 
     }
   );
-
-  document.getElementById("avant").addEventListener("click", () => {
+  document.getElementById("babord").addEventListener("click", () => {
     var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 61, y: 28, z: -77 },
       2000).easing(TWEEN.Easing.Cubic.Out)
       .start()
   });
+  document.getElementById("avant").addEventListener("click", () => {
+    var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 111, y: 13, z: 2 },
+      2000).easing(TWEEN.Easing.Cubic.Out)
+      .start()
+  });
   document.getElementById("retour").addEventListener("click", () => {
-    var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 11, y: 110, z: 233 }).easing(TWEEN.Easing.Cubic.Out)
+    var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 11, y: 110, z: 233 }, 2000).easing(TWEEN.Easing.Cubic.Out)
       .start()
   });
 
