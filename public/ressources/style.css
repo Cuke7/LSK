@@ -94,7 +94,8 @@ select {
 }
 
 .hidden-child {
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 
@@ -108,11 +109,15 @@ select {
     top: 100px;
     font-weight: bold;
     color: white;
-    font-size: x-large;
+    /* font-size: x-large; */
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     padding: 5px;
     /* font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
+}
+
+ul {
+    margin-right: 1rem;
 }
 
 #container {
@@ -121,4 +126,19 @@ select {
 
 #container:active {
     cursor: grabbing;
+}
+
+.instruction {
+    top: 50px;
+    left: 0;
+    right: 0;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    position: absolute;
+    width: 40%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
 }
