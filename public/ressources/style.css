@@ -142,3 +142,9 @@ ul {
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
 }
+
+@media screen and (max-width: 600px) {
+    .instruction {
+        visibility: hidden;
+    }
+}
