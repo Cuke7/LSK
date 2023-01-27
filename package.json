@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "homepage": "https://Cuke7.github.io/maquetteLSK/",
+    "homepage": "https://Cuke7.github.io/LSK/",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
