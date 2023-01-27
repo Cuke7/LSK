@@ -177,7 +177,7 @@ function init() {
 
   loader.load(
     // resource URL
-    'ressources/model2.3dm',
+    'ressources/model.3dm',
     // called when the resource is loaded
     function (object) {
       console.log("LOADED")
