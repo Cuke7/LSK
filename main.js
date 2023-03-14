@@ -144,7 +144,6 @@ function init() {
   addView("arriere", { x: -75, y: 5, z: 35 }, { x: -35, y: 12, z: 30 }, "Arrière");
   addView("babord", { x: 61, y: 28, z: -77 }, { x: 0, y: 10, z: 0 }, "Babord");
   addView("avant", { x: 111, y: 13, z: 2 }, { x: 0, y: 10, z: 0 }, "Avant");
-  addView("ID", { x: -37, y: 11, z: 29 }, { x: -35, y: 12, z: 30 }, "Nom à afficher");
   addView("retour", { x: 11, y: 110, z: 233 }, { x: 0, y: 10, z: 0 }, "Retour");
 
 
