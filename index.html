@@ -6,30 +6,26 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LSK demo</title>
-  <link href="/ressources/style.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-  <div id="center">
-    <div id="container">
-      <div class="instruction">
-        <ul>
-          <li>
-            Clic gauche pour faire tourner la caméra
-          </li>
-          <li>
-            Clic droit pour faire bouger la caméra
-          </li>
-          <li>
-            Molette de la souris pour zoomer
-          </li>
-        </ul>
+  <div class="h-screen bg-black flex w-full p-8 cursor-pointer">
+    <div id="container" class="w-full flex justify-center bg-white ">
+      <div id="debug"
+        class="bg-blue-600 font-mono text-white flex p-2 absolute left-10 rounded-md mt-2 hover:bg-blue-900 hidden">
+        Debug
       </div>
-      <div class="parent">
-        <button id="debug">Show code</button>
-        <ul id="list" />
+      <div class="bg-blue-600 absolute mt-4 p-2 text-white rounded-md font-mono" id="chargement">
+        Chargement... ()
       </div>
+      <div
+        class="flex text-white font-bold font-mono absolute right-10 top-10 p-4 flex-col space-y-4 bg-blue-400 bg-opacity-50 rounded-md"
+        id="views" />
     </div>
+  </div>
+
+
   </div>
 
 

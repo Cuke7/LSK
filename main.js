@@ -2,15 +2,13 @@
 
 import * as THREE from 'three';
 
-import Stats from 'three/addons/libs/stats.module.js';
-
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Water } from 'three/addons/objects/Water.js';
 import { Sky } from 'three/addons/objects/Sky.js';
 
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-let container, stats;
+let container;
 let camera, scene, renderer;
 let controls, water, sun;
 
@@ -25,7 +23,7 @@ function init() {
 
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(document.getElementById("container").clientWidth, document.getElementById("container").clientHeight);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   container.appendChild(renderer.domElement);
 
@@ -74,7 +72,7 @@ function init() {
   skyUniforms['mieDirectionalG'].value = 0.8;
 
   const parameters = {
-    elevation: 3,
+    elevation: 5,
     azimuth: 180
   };
 
@@ -108,8 +106,6 @@ function init() {
   controls.maxDistance = 2000.0;
   controls.update();
 
-  stats = new Stats();
-  container.appendChild(stats.dom);
 
   window.addEventListener('resize', onWindowResize);
 
@@ -132,26 +128,35 @@ function init() {
 
       scene.add(object);
 
-
+      document.getElementById("chargement").hidden = true;
+    },
+    function (xhr) {
+      document.getElementById("chargement").innerHTML = `Chargement... (${Math.floor(xhr.loaded / xhr.total * 100)}%)`
     },
   );
 
 
   document.getElementById('debug').addEventListener("click", (event) => {
-    window.alert(`addView("ID", {x:${Math.floor(controls.object.position.x)}, y:${Math.floor(controls.object.position.y)}, z:${Math.floor(controls.object.position.z)}}, {x:${Math.floor(controls.target.x)}, y:${Math.floor(controls.target.y)}, z:${Math.floor(controls.target.z)}}, "Nom à afficher");`)
+    window.alert(`addView({x:${Math.floor(controls.object.position.x)}, y:${Math.floor(controls.object.position.y)}, z:${Math.floor(controls.object.position.z)}}, {x:${Math.floor(controls.target.x)}, y:${Math.floor(controls.target.y)}, z:${Math.floor(controls.target.z)}}, "Nom à afficher");`)
   })
 
-  addView("arriere", { x: -75, y: 5, z: 35 }, { x: -35, y: 12, z: 30 }, "Arrière");
-  addView("babord", { x: 61, y: 28, z: -77 }, { x: 0, y: 10, z: 0 }, "Babord");
-  addView("avant", { x: 111, y: 13, z: 2 }, { x: 0, y: 10, z: 0 }, "Avant");
-  addView("retour", { x: 11, y: 110, z: 233 }, { x: 0, y: 10, z: 0 }, "Retour");
+  // addView("arriere", { x: -75, y: 5, z: 35 }, { x: -35, y: 12, z: 30 }, "Arrière");
+  // addView("babord", { x: 61, y: 28, z: -77 }, { x: 0, y: 10, z: 0 }, "Babord");
+  // addView("avant", { x: 111, y: 13, z: 2 }, { x: 0, y: 10, z: 0 }, "Avant");
+  // addView("retour", { x: 11, y: 110, z: 233 }, { x: 0, y: 10, z: 0 }, "Retour");
+
+  addView({ x: -28, y: 20, z: 4 }, { x: -2, y: 8, z: -3 }, "Poste de pilotage");
+  addView({ x: 0, y: 17, z: 6 }, { x: 9, y: 9, z: 4 }, "Kitebox");
+  addView({ x: -1, y: 17, z: -7 }, { x: -7, y: 11, z: 0 }, "Platine de traction");
+  addView({ x: 37, y: 54, z: 1 }, { x: 27, y: 0, z: 1 }, "Panneaux solaires");
+  addView({ x: -17, y: 40, z: -33 }, { x: -8, y: 28, z: 8 }, "Mat de lancement");
+  addView({ x: 57, y: 166, z: 401 }, { x: 54, y: 29, z: 26 }, "Vue aérienne")
 
 
-  function addView(id, position, target, nom) {
-    const list = document.getElementById("list");
-    const li = document.createElement("li");
-    li.classList.add("hidden-child");
-    li.id = id;
+  function addView(position, target, nom) {
+    const list = document.getElementById("views");
+    const li = document.createElement("div");
+    li.classList.add(["hover:text-red-600"])
     li.innerHTML = nom;
     list.appendChild(li)
     li.addEventListener("click", () => {
@@ -170,9 +175,7 @@ function onWindowResize() {
 
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
-
+  renderer.setSize(document.getElementById("container").clientWidth, document.getElementById("container").clientHeight);
 }
 
 function animate() {
@@ -181,11 +184,8 @@ function animate() {
   TWEEN.update()
   controls.update()
   render();
-  stats.update();
-  window.camera = camera
-  window.controls = controls
-
-
+  // window.camera = camera
+  // window.controls = controls
 }
 
 function render() {
