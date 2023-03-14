@@ -8,6 +8,8 @@ import { Sky } from 'three/addons/objects/Sky.js';
 
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+import TWEEN from "tween.js"
+
 let container;
 let camera, scene, renderer;
 let controls, water, sun;
