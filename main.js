@@ -1,3 +1,5 @@
+// https://3dviewer.net/
+
 import * as THREE from 'three';
 
 import Stats from 'three/addons/libs/stats.module.js';
@@ -6,16 +8,14 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Water } from 'three/addons/objects/Water.js';
 import { Sky } from 'three/addons/objects/Sky.js';
 
-import { Rhino3dmLoader } from 'three/addons/loaders/3DMLoader.js';
-
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 let container, stats;
 let camera, scene, renderer;
-let controls, water, sun, mesh;
+let controls, water, sun;
 
 init();
 animate();
-
 
 function init() {
 
@@ -29,19 +29,15 @@ function init() {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   container.appendChild(renderer.domElement);
 
-  //
-
   scene = new THREE.Scene();
 
   camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
   camera.position.set(30, 30, 100);
 
-  //
 
   sun = new THREE.Vector3();
 
   // Water
-
   const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
 
   water = new Water(
@@ -105,136 +101,69 @@ function init() {
 
   updateSun();
 
-  //
-
-  const geometry = new THREE.BoxGeometry(30, 30, 30);
-  const material = new THREE.MeshStandardMaterial({ roughness: 0 });
-
-  mesh = new THREE.Mesh(geometry, material);
-  // scene.add(mesh);
-
-  //
-
   controls = new OrbitControls(camera, renderer.domElement);
   controls.maxPolarAngle = Math.PI * 0.495 * 4;
   controls.target.set(0, 10, 0);
-  controls.minDistance = 40.0;
+  controls.minDistance = 0;
   controls.maxDistance = 2000.0;
   controls.update();
-
-  //
 
   stats = new Stats();
   container.appendChild(stats.dom);
 
-  // GUI
-
-  // const gui = new GUI();
-
-  const location1 = {
-    myFunction: function () {
-      var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 36, y: 21, z: -75 },
-        2000).easing(TWEEN.Easing.Cubic.Out)
-        .start()
-
-    },
-  };
-
-  const reset = {
-    myFunction: function () {
-      var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 30, y: 30, z: 100 }).easing(TWEEN.Easing.Cubic.Out)
-        .start()
-
-    },
-  };
-
-  // const folderButtons = gui.addFolder('Camera transitions')
-  // folderButtons.open();
-  // folderButtons.add(location1, 'myFunction'); // Button
-  // folderButtons.add(reset, 'myFunction'); // Button
-  // folderButtons.open();
-
-
-  // const folderSky = gui.addFolder('Sky');
-  // folderSky.add(parameters, 'elevation', 0, 90, 0.1).onChange(updateSun);
-  // folderSky.add(parameters, 'azimuth', - 180, 180, 0.1).onChange(updateSun);
-  // folderSky.open();
-
-  // const waterUniforms = water.material.uniforms;
-
-  // const folderWater = gui.addFolder('Water');
-  // folderWater.add(waterUniforms.distortionScale, 'value', 0, 8, 0.1).name('distortionScale');
-  // folderWater.add(waterUniforms.size, 'value', 0.1, 10, 0.1).name('size');
-  // folderWater.open();
-
-  //
-
   window.addEventListener('resize', onWindowResize);
 
-  // RHINO
-  const loader = new Rhino3dmLoader();
-  loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.11.1/');
+
+  const loader = new GLTFLoader();
 
   loader.load(
     // resource URL
-    'ressources/model.3dm',
+    'ressources/model.glb',
     // called when the resource is loaded
-    function (object) {
-      console.log("LOADED")
+    function (gltf) {
+
+      let object = gltf.scene
+
       object.rotation.x = Math.PI / 2 * 3
       object.scale.x = 0.005
       object.scale.y = 0.005
       object.scale.z = 0.005
-      window.boat = object
-      object.position.z = 35;
       object.position.x = -40;
-      scene.add(object)
-    },
-    // called as loading progresses
-    function (xhr) {
 
-      console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+      scene.add(object);
+
 
     },
-    // called when loading has errors
-    function (error) {
-
-      console.log('An error happened');
-
-    }
   );
-  document.getElementById("arriere").addEventListener("click", () => {
-    var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: -75, y: 5, z: 35 },
-      2000).easing(TWEEN.Easing.Cubic.Out)
-      .start()
-    var lookAtTween2 = new TWEEN.Tween(controls.target).to({ x: -35, y: 12, z: 30 },
-      2000).easing(TWEEN.Easing.Cubic.Out)
-      .start()
-  });
-  document.getElementById("babord").addEventListener("click", () => {
-    var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 61, y: 28, z: -77 },
-      2000).easing(TWEEN.Easing.Cubic.Out)
-      .start()
-    var lookAtTween2 = new TWEEN.Tween(controls.target).to({ x: 0, y: 10, z: 0 },
-      2000).easing(TWEEN.Easing.Cubic.Out)
-      .start()
 
-  });
-  document.getElementById("avant").addEventListener("click", () => {
-    var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 111, y: 13, z: 2 },
-      2000).easing(TWEEN.Easing.Cubic.Out)
-      .start()
-    var lookAtTween2 = new TWEEN.Tween(controls.target).to({ x: 0, y: 10, z: 0 },
-      2000).easing(TWEEN.Easing.Cubic.Out)
-      .start()
-  });
-  document.getElementById("retour").addEventListener("click", () => {
-    var lookAtTween = new TWEEN.Tween(controls.object.position).to({ x: 11, y: 110, z: 233 }, 2000).easing(TWEEN.Easing.Cubic.Out)
-      .start()
-    var lookAtTween2 = new TWEEN.Tween(controls.target).to({ x: 0, y: 10, z: 0 },
-      2000).easing(TWEEN.Easing.Cubic.Out)
-      .start()
-  });
+
+  document.getElementById('debug').addEventListener("click", (event) => {
+    window.alert(`addView("ID", {x:${Math.floor(controls.object.position.x)}, y:${Math.floor(controls.object.position.y)}, z:${Math.floor(controls.object.position.z)}}, {x:${Math.floor(controls.target.x)}, y:${Math.floor(controls.target.y)}, z:${Math.floor(controls.target.z)}}, "Nom à afficher");`)
+  })
+
+  addView("arriere", { x: -75, y: 5, z: 35 }, { x: -35, y: 12, z: 30 }, "Arrière");
+  addView("babord", { x: 61, y: 28, z: -77 }, { x: 0, y: 10, z: 0 }, "Babord");
+  addView("avant", { x: 111, y: 13, z: 2 }, { x: 0, y: 10, z: 0 }, "Avant");
+  addView("ID", { x: -37, y: 11, z: 29 }, { x: -35, y: 12, z: 30 }, "Nom à afficher");
+  addView("retour", { x: 11, y: 110, z: 233 }, { x: 0, y: 10, z: 0 }, "Retour");
+
+
+  function addView(id, position, target, nom) {
+    const list = document.getElementById("list");
+    const li = document.createElement("li");
+    li.classList.add("hidden-child");
+    li.id = id;
+    li.innerHTML = nom;
+    list.appendChild(li)
+    li.addEventListener("click", () => {
+      new TWEEN.Tween(controls.object.position).to(position,
+        2000).easing(TWEEN.Easing.Cubic.Out)
+        .start()
+      new TWEEN.Tween(controls.target).to(target,
+        2000).easing(TWEEN.Easing.Cubic.Out)
+        .start()
+    });
+  }
 
 }
 
@@ -261,12 +190,6 @@ function animate() {
 }
 
 function render() {
-
-  const time = performance.now() * 0.001;
-
-  // mesh.position.y = Math.sin(time) * 20 + 5;
-  // mesh.rotation.x = time * 0.5;
-  // mesh.rotation.z = time * 0.51;
 
   water.material.uniforms['time'].value += 1.0 / 60.0;
 
