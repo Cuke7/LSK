@@ -137,7 +137,8 @@ function init() {
       document.getElementById("chargement").hidden = true;
     },
     function (xhr) {
-      document.getElementById("chargement").innerHTML = `Chargement... (${xhr.loaded}/${xhr.total})`
+      // document.getElementById("chargement").innerHTML = `Chargement... (${xhr.loaded}/${xhr.total})`
+      document.getElementById("chargement").innerHTML = `Chargement...`
     },
   );
 
