@@ -14,8 +14,12 @@ let container;
 let camera, scene, renderer;
 let controls, water, sun;
 
-init();
-animate();
+window.addEventListener('load', function () {
+  init();
+  animate();
+})
+
+
 
 function init() {
 
