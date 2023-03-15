@@ -78,7 +78,7 @@ function init() {
   skyUniforms['mieDirectionalG'].value = 0.8;
 
   const parameters = {
-    elevation: 5,
+    elevation: 4,
     azimuth: 180
   };
 
@@ -157,7 +157,8 @@ function init() {
   addView({ x: -1, y: 17, z: -7 }, { x: -7, y: 11, z: 0 }, "Platine de traction");
   addView({ x: 37, y: 54, z: 1 }, { x: 27, y: 0, z: 1 }, "Panneaux solaires");
   addView({ x: -17, y: 40, z: -33 }, { x: -8, y: 28, z: 8 }, "Mat de lancement");
-  addView({ x: 57, y: 166, z: 401 }, { x: 54, y: 29, z: 26 }, "Vue aérienne")
+  addView({ x: -25, y: 17, z: -3 }, { x: -8, y: 28, z: 8 }, "Sea kite");
+  addView({ x: -255, y: 232, z: -257 }, { x: 0, y: 10, z: 0 }, "Vue aérienne");
 
 
   function addView(position, target, nom) {
