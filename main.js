@@ -125,7 +125,7 @@ function init() {
 
   loader.load(
     // resource URL
-    'ressources/model.glb',
+    'ressources/model2.glb',
     // called when the resource is loaded
     function (gltf) {
 
