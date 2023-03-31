@@ -7,12 +7,17 @@ import { Water } from 'three/addons/objects/Water.js';
 import { Sky } from 'three/addons/objects/Sky.js';
 
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
 
 import TWEEN from "tween.js"
 
 let container;
 let camera, scene, renderer;
 let controls, water, sun;
+
+// var dracoLoader = new DRACOLoader();
+// dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
 
 window.addEventListener('load', function () {
   init();
