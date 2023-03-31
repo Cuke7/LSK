@@ -122,7 +122,7 @@ function init() {
 
   loader.load(
     // resource URL
-    'ressources/model2.glb',
+    'ressources/model_compressed.glb',
     // called when the resource is loaded
     function (gltf) {
 
