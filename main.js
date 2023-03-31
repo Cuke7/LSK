@@ -9,15 +9,11 @@ import { Sky } from 'three/addons/objects/Sky.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
-
 import TWEEN from "tween.js"
 
 let container;
 let camera, scene, renderer;
 let controls, water, sun;
-
-// var dracoLoader = new DRACOLoader();
-// dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
 
 window.addEventListener('load', function () {
   init();
@@ -29,8 +25,6 @@ window.addEventListener('load', function () {
 function init() {
 
   container = document.getElementById('container');
-
-  //
 
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -122,6 +116,9 @@ function init() {
 
 
   const loader = new GLTFLoader();
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
+  loader.setDRACOLoader(dracoLoader);
 
   loader.load(
     // resource URL
