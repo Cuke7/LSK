@@ -11,27 +11,34 @@
   <script src="https://rawgit.com/google/draco/master/javascript/example/DRACOLoader.js"></script> -->
 </head>
 
-<body>
-  <div class="h-screen bg-black flex w-full cursor-pointer">
-    <div id="container" class="w-full flex justify-center bg-white ">
-      <div id="debug"
-        class="bg-blue-600 font-mono text-white flex p-2 absolute left-10 rounded-md mt-2 hover:bg-blue-900 hidden">
-        Debug
-      </div>
-      <div class="bg-blue-600 absolute mt-4 p-2 text-white rounded-md font-mono" id="chargement">
-        Chargement... ()
-      </div>
-      <div
-        class="flex text-white font-bold font-mono absolute right-10 top-10 p-4 flex-col space-y-4 bg-blue-400 bg-opacity-50 rounded-md"
-        id="views" />
+<body class="h-screen bg-transparent flex w-full  p-4">
+  <div id="container" class="grow flex justify-center bg-blue-400 cursor-pointer">
+    <div id="debug"
+      class="bg-blue-600 font-mono text-white flex p-2 absolute left-10 rounded-md mt-2 hover:bg-blue-900 hidden">
+      Debug
     </div>
+    <div class="bg-blue-600 absolute mt-4 p-2 text-white rounded-md font-mono" id="chargement">
+      Chargement... ()
+    </div>
+
   </div>
-
+  <div class="bg-teal-700 flex flex-col mx-4 p-4 rounded-xl text-white whitespace-nowrap">
+    <h2 class="text-4xl">
+      Le SeaKite en 3D
+    </h2>
+    <div id="views" class="flex-1 flex flex-col justify-evenly py-32 font-bold" />
 
   </div>
-
-
-  <!-- <script async src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script> -->
+  </div>
+  <div class="flex flex-col justify-center w-1/5">
+    <h2 class="text-4xl mb-4" id="title">
+      Vue aérienne
+    </h2>
+    <p id="description">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum molestias cum consequatur.
+    </p>
+  </div>
+  </div>
   <script type="module" src="./main.js"></script>
 </body>
 
