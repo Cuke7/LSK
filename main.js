@@ -218,6 +218,7 @@ function init() {
   controls.target.z = elements.vue_aerienne.target.z
   descriptionDiv.innerHTML = elements.vue_aerienne.description;
   titleDiv.innerHTML = elements.vue_aerienne.title
+  document.getElementById("vue_aerienne").classList.add("text-slate-400")
 }
 
 function onWindowResize() {
