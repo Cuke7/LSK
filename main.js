@@ -210,11 +210,19 @@ function init() {
     const element = elements[key];
     addView({ ...element, id: key })
   }
+  controls.object.position.x = elements.vue_aerienne.position.x;
+  controls.object.position.y = elements.vue_aerienne.position.y;
+  controls.object.position.z = elements.vue_aerienne.position.z;
+  controls.target.x = elements.vue_aerienne.target.x
+  controls.target.y = elements.vue_aerienne.target.y
+  controls.target.z = elements.vue_aerienne.target.z
+  descriptionDiv.innerHTML = elements.vue_aerienne.description;
+  titleDiv.innerHTML = elements.vue_aerienne.title
 }
 
 function onWindowResize() {
 
-  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = document.getElementById("container").clientWidth / document.getElementById("container").clientHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(document.getElementById("container").clientWidth, document.getElementById("container").clientHeight);
 }
@@ -225,8 +233,7 @@ function animate() {
   TWEEN.update()
   controls.update()
   render();
-  // window.camera = camera
-  // window.controls = controls
+
 }
 
 function render() {
