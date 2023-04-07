@@ -49,7 +49,7 @@ const elements = {
   panneaux_solaires: {
     position: { x: 37, y: 54, z: 1 },
     target: { x: 27, y: 0, z: 1 },
-    title: "Panneaux photovoltaïque",
+    title: "Panneaux photovoltaïques",
     description: "Des panneaux pour charger les batteries."
   },
   kitebox: {
