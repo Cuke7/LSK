@@ -20,7 +20,7 @@ const elements = {
     position: { x: -255, y: 232, z: -257 },
     target: { x: 0, y: 10, z: 0 },
     title: "Vue aérienne",
-    description: "Une belle vue aérienne du bateau."
+    description: "Une belle vue aérienne du bateau. "
   },
   poste_de_pilotage: {
     position: { x: -28, y: 20, z: 4 },
@@ -208,7 +208,7 @@ function init() {
 
 
 
-  document.getElementById("views").removeChild(document.getElementById("remove"))
+  // document.getElementById("views").removeChild(document.getElementById("remove"))
 
   for (const key of Object.keys(elements)) {
     const element = elements[key];
