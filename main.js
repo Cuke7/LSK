@@ -31,7 +31,7 @@ const elements = {
   sea_kite: {
     position: { x: -25, y: 17, z: -3 },
     target: { x: -8, y: 28, z: 8 },
-    title: "Sea kite",
+    title: "SeaKite",
     description: "Une belle voile."
   },
   mat_de_lancement: {
@@ -49,7 +49,7 @@ const elements = {
   panneaux_solaires: {
     position: { x: 37, y: 54, z: 1 },
     target: { x: 27, y: 0, z: 1 },
-    title: "Panneaux solaires",
+    title: "Panneaux photovoltaïque",
     description: "Des panneaux pour charger les batteries."
   },
   kitebox: {
