@@ -7,15 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LSK demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- <script src="https://cdn.rawgit.com/mrdoob/three.js/dev/build/three.min.js"></script>
-  <script src="https://rawgit.com/google/draco/master/javascript/example/DRACOLoader.js"></script> -->
 </head>
 
 <body class="h-screen bg-transparent flex flex-col px-4 lg:flex-row">
 
 
-
-  <div id="container" class="flex items-center flex-1 justify-center">
+  <div id="container" class="flex items-center grow justify-center">
     <div id="debug"
       class="bg-blue-600 font-mono text-white flex p-2 absolute left-10 rounded-md mt-2 hover:bg-blue-900 hidden">
       Debug
@@ -26,23 +23,26 @@
   </div>
 
 
-  <div class="flex flex-col flex-1 lg:flex-row">
-    <div class="bg-teal-700 rounded-md text-white p-4 mt-4 flex flex-col flex-1 lg:mt-0 lg:mx-4">
-      <h2 class="text-4xl bg-red-20 mb-4">
+  <div class="flex flex-col lg:flex-row">
+    <div class="bg-teal-700 rounded-md text-white p-4 mt-4 flex flex-col lg:mt-0 lg:mx-4">
+      <h2 class="text-2xl bg-red-20 mb-4">
         Le SeaKite en 3D
       </h2>
       <div id="views"
-        class="flex font-bold overflow-x-scroll whitespace-nowrap bg-green-40 pb-4 lg:flex-col lg:overflow-x-hidden lg:justify-evenly flex-1 space-x-4 lg:space-x-0"
-        style="scrollbar-color: red yellow !important;">
+        class="flex font-bold overflow-x-scroll whitespace-nowrap bg-green-40 pb-4 lg:flex-col lg:overflow-x-hidden lg:justify-evenly flex-1 space-x-4 lg:space-x-0">
+        <div id="remove">
+          Vue aérienne
+        </div>
       </div>
     </div>
 
 
-
-    <div class="flex flex-col justify-center py-4 px-1 flex-1">
-      <h2 class="text-4xl mb-4" id="title">
+    <div class="flex flex-col justify-center py-4 px-1 ">
+      <h2 class="text-2xl mb-4" id="title">
+        A text
       </h2>
       <p id="description">
+        Some text
       </p>
     </div>
   </div>

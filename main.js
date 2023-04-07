@@ -206,6 +206,10 @@ function init() {
   // addView({ x: 37, y: 54, z: 1 }, { x: 27, y: 0, z: 1 }, "Panneaux solaires", "panneaux_solaires");
   // addView({ x: 0, y: 17, z: 6 }, { x: 9, y: 9, z: 4 }, "Kitebox", "kitebox");
 
+
+
+  document.getElementById("views").removeChild(document.getElementById("remove"))
+
   for (const key of Object.keys(elements)) {
     const element = elements[key];
     addView({ ...element, id: key })
