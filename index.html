@@ -11,11 +11,11 @@
   <script src="https://rawgit.com/google/draco/master/javascript/example/DRACOLoader.js"></script> -->
 </head>
 
-<body class="h-screen bg-transparent flex flex-col w-full p-4">
+<body class="h-screen bg-transparent flex flex-col p-4 lg:flex-row">
 
 
 
-  <div id="container" class="flex-1 flex justify-center bg-blue-400 cursor-pointer">
+  <div id="container" class="flex items-center flex-1 justify-center">
     <div id="debug"
       class="bg-blue-600 font-mono text-white flex p-2 absolute left-10 rounded-md mt-2 hover:bg-blue-900 hidden">
       Debug
@@ -26,25 +26,40 @@
   </div>
 
 
+  <div class="flex flex-col flex-1 lg:flex-row">
+    <div class="bg-teal-700 rounded-md text-white p-4 mt-4 flex flex-col flex-1 lg:mt-0 lg:mx-4">
+      <h2 class="text-4xl bg-red-20 mb-4">
+        Le SeaKite en 3D
+      </h2>
+      <div id="views"
+        class="flex font-bold overflow-x-scroll whitespace-nowrap bg-green-40 pb-4 lg:flex-col lg:overflow-x-hidden lg:justify-evenly flex-1 space-x-4 lg:space-x-0"
+        style="scrollbar-color: red yellow !important;">
+      </div>
+    </div>
 
-  <div class="bg-teal-700 rounded-xl text-white p-4 space-y-2 mt-4">
-    <h2 class="text-4xl">
-      Le SeaKite en 3D
-    </h2>
-    <div id="views" class="flex-1 flex flex-col justify-evenly font-bold"></div>
+
+
+    <div class="flex flex-col justify-center py-4 px-1 flex-1">
+      <h2 class="text-4xl mb-4" id="title">
+      </h2>
+      <p id="description">
+      </p>
+    </div>
   </div>
 
 
+  <style>
+    ::-webkit-scrollbar {
+      height: 4px;
+      /* height of horizontal scrollbar ← You're missing this */
+      /* width of vertical scrollbar */
+    }
 
-  <div class="flex flex-col justify-center p-4 pb-8">
-    <h2 class="text-4xl mb-4" id="title">
-      Vue aérienne
-    </h2>
-    <p id="description">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum molestias cum consequatur.
-    </p>
-  </div>
-
+    ::-webkit-scrollbar-thumb {
+      background: white;
+      border-radius: 5px
+    }
+  </style>
 
 
   <script type="module" src="./main.js"></script>
