@@ -29,8 +29,8 @@ const elements = {
     description: "Un siège et un ordinateur."
   },
   sea_kite: {
-    position: { x: -25, y: 17, z: -3 },
-    target: { x: -8, y: 28, z: 8 },
+    position: { x: -40, y: 42, z: 1 },
+    target: { x: -21, y: 50, z: 13 },
     title: "SeaKite",
     description: "Une belle voile."
   },
@@ -41,19 +41,19 @@ const elements = {
     description: "Un mat en carbone."
   },
   platine_de_traction: {
-    position: { x: -1, y: 17, z: -7 },
-    target: { x: -7, y: 11, z: 0 },
+    position: { x: -1, y: 16, z: -5 },
+    target: { x: -7, y: 12, z: 0 },
     title: "Platine de traction",
     description: "La platine tire le bateau."
   },
   panneaux_solaires: {
-    position: { x: 37, y: 54, z: 1 },
-    target: { x: 27, y: 0, z: 1 },
+    position: { x: 51, y: 21, z: -17 },
+    target: { x: 26, y: 3, z: -17 },
     title: "Panneaux photovoltaïques",
     description: "Des panneaux pour charger les batteries."
   },
   kitebox: {
-    position: { x: 0, y: 17, z: 6 },
+    position: { x: 3, y: 19, z: -3 },
     target: { x: 9, y: 9, z: 4 },
     title: "Kitebox",
     description: "Une boite en métal."
@@ -62,6 +62,7 @@ const elements = {
 
 const titleDiv = document.getElementById("title")
 const descriptionDiv = document.getElementById("description")
+const infosDiv = document.getElementById("info")
 
 
 window.addEventListener('load', function () {
@@ -171,7 +172,7 @@ function init() {
 
   loader.load(
     // resource URL
-    'ressources/model_compressed.glb',
+    'ressources/model_draco.glb',
     // called when the resource is loaded
     function (gltf) {
 
@@ -195,7 +196,10 @@ function init() {
 
 
   document.getElementById('debug').addEventListener("click", (event) => {
-    window.alert(`addView({x:${Math.floor(controls.object.position.x)}, y:${Math.floor(controls.object.position.y)}, z:${Math.floor(controls.object.position.z)}}, {x:${Math.floor(controls.target.x)}, y:${Math.floor(controls.target.y)}, z:${Math.floor(controls.target.z)}}, "Nom à afficher");`)
+    // window.alert(`addView({x:${Math.floor(controls.object.position.x)}, y:${Math.floor(controls.object.position.y)}, z:${Math.floor(controls.object.position.z)}}, {x:${Math.floor(controls.target.x)}, y:${Math.floor(controls.target.y)}, z:${Math.floor(controls.target.z)}}, "Nom à afficher");`)
+
+    window.alert(`position: { x:${Math.floor(controls.object.position.x)}, y:${Math.floor(controls.object.position.y)}, z:${Math.floor(controls.object.position.z)}},
+    target: { x:${Math.floor(controls.target.x)}, y:${Math.floor(controls.target.y)}, z:${Math.floor(controls.target.z)}},`)
   })
 
   // addView({ x: -255, y: 232, z: -257 }, { x: 0, y: 10, z: 0 }, "Vue aérienne", "vue_aerienne");
@@ -212,7 +216,8 @@ function init() {
 
   for (const key of Object.keys(elements)) {
     const element = elements[key];
-    addView({ ...element, id: key })
+    if (key == "kitebox") addView({ ...element, id: key }, true)
+    else addView({ ...element, id: key })
   }
   controls.object.position.x = elements.vue_aerienne.position.x;
   controls.object.position.y = elements.vue_aerienne.position.y;
@@ -246,7 +251,7 @@ function render() {
   renderer.render(scene, camera);
 }
 
-function addView({ position, target, title, id, description }) {
+function addView({ position, target, title, id, description }, displayInfo) {
   const list = document.getElementById("views");
   const li = document.createElement("div");
   li.classList.add(["hover:text-slate-400"])
@@ -263,7 +268,6 @@ function addView({ position, target, title, id, description }) {
       .start()
     for (const element of event.target.parentNode.children) {
       element.classList.remove("text-slate-400")
-      console.log(element)
     }
     event.target.classList.add("text-slate-400")
     descriptionDiv.innerHTML = description;
